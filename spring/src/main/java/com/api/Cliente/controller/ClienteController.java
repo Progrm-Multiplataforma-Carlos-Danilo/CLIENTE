@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+
 @RestController
 public class ClienteController {
     private final ClienteRepository clienteRepository;
@@ -22,7 +23,7 @@ public class ClienteController {
         this.enderecoIntegration=enderecoIntegration;
     }
 
-    @PostMapping("cliente/cadastrar")
+    @PostMapping("/cliente/cadastrar")
     public ClienteResponse cadastrar(@RequestBody ClienteRequest request) {
         Endereco enderecoViaCep = enderecoIntegration.buscarCep(request.endereco());
         
@@ -42,18 +43,18 @@ public class ClienteController {
         return ClienteControllerAdapter.castResponse(clienteCadastrar);
     }
 
-    @GetMapping("cliente/{id}")
+    @GetMapping("/cliente/{id}")
     public ClienteResponse pesquisar(@PathVariable String id){
         Cliente cliente = clienteRepository.pesquisarEspecifico(id);
         return  ClienteControllerAdapter.castResponse(cliente);
         }
 
-    @GetMapping("cliente/listar")
+    @GetMapping("/cliente/listar")
     public Collection<ClienteResponse> listar(){
         return clienteRepository.Listar().stream().map(ClienteControllerAdapter::castResponse).collect(Collectors.toList());
     }
 
-    @PutMapping("cliente/atualizar/{id}")
+    @PutMapping("/cliente/atualizar/{id}")
     public ClienteResponse atualizar(@PathVariable String id, @RequestBody ClienteRequest request){
         Endereco enderecoViaCep = enderecoIntegration.buscarCep(request.endereco());
         
@@ -68,7 +69,7 @@ public class ClienteController {
         
     }
 
-    @DeleteMapping("cliente/{id}")
+    @DeleteMapping("/cliente/{id}")
     public String deletar(@PathVariable String id){
         clienteRepository.Deletar(id);
         return "CLiente DELETADO";

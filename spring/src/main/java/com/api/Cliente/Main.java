@@ -7,9 +7,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients(basePackages = "com.api.Cliente")
 @SpringBootApplication
-public class ApiClienteApplication  {
+public class Main {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiClienteApplication.class, args);
+        SpringApplication.run(Main.class, args);
     }
 }
