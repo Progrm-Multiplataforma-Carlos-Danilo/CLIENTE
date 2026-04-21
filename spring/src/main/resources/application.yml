@@ -6,4 +6,4 @@ spring:
   data:
     mongodb:
       auto-index-creation: true
-      uri: mongodb://localhost:27017/Cliente
+      uri: mongodb://localhost:27017/microServico
